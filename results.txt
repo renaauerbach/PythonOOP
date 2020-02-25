@@ -1,0 +1,86 @@
+name: Rena Auerbach
+email: renaauer@bu.edu
+
+puzzles with 5-move optimal solutions
+-------------------------------------
+algorithm		num. solved	avg. moves	avg. states tested
+--------------------------------------------------------------------------
+random			     10		5.0		260.1
+BFS			     10		5.0		47.1
+DFS (depth limit 20)	     10		16.2		19072.7
+DFS (depth limit 50)	     10		48.2		49043.0
+Greedy Search (using h1)     10		5.4		70.3
+A* (using h1)		     10		5.0		10.1
+
+puzzles with 10-move optimal solutions
+-------------------------------------
+algorithm		num. solved	avg. moves	avg. states tested
+--------------------------------------------------------------------------
+random			     10		11.8		2771.7
+BFS			     10 	10.0		747.4
+DFS (depth limit 20)	     10		18.8		24858.0
+DFS (depth limit 50)	     8		49.0		50515.6
+Greedy Search (using h1)     8		76.0		325.6
+A* (using h1)		     10 	10.0		747.1
+
+puzzles with 15-move optimal solutions
+-------------------------------------
+algorithm		num. solved	avg. moves	avg. states tested
+--------------------------------------------------------------------------
+random			     4		16.0		10249.0
+BFS			     10		15.0		12672.0
+DFS (depth limit 20)	     10		17.8		68659.0
+DFS (depth limit 50)	     8		48.5		30240.5
+Greedy Search (using h1)     6		90.3		2718.0
+A* (using h1)		     9		15.5		12098.9
+
+	Based on these results, it is clear that the algorithms are able to solve more puzzles when there are fewer optimal solutions. My maximum time was 30 seconds consistently. These results also show that A* and Greedy Searcher are both able to process files quicker than the other algorithms, and A* is able to do so with fewer moves. The amount of moves used for A*, random, and BFS was approximately the optimal amount for each puzzle. Although DFS was one of the only algorithms to consistently solve all 10 puzzles (along with BFS), it tested more states on average as well.
+
+
+heuristic h2
+------------
+This heuristic computes and returns an estimate of how many additional moves are needed to get from the current state to the goal state. It calls the Board method solver, which computes the Manhattan distance between the indices of each number in the current state and their respective desired indices in the goal state. For example, if one state has a Manhattan distance of 6 (requires 4 moves to achieve the goal state) and another state has a Manhattan distance of 12 (requires 24 moves to achieve the goal state), this heuristic will know to prioritize the one with a lower Manhattan distance, the one that also requires less moves to achieve the goal state.
+
+
+puzzles with 18-move optimal solutions
+--------------------------------------
+algorithm              	num. solved    avg. moves    avg. states tested
+------------------------------------------------------------------------
+Greedy (heuristic h1)	     6		136.3	   	2237.8
+Greedy (heuristic h2)	     10		116.2	   	450.0
+
+A* (heuristic h1)	     2		18.0		5316.5
+A* (heuristic h2)	     4		19.5		8654.25
+
+puzzles with 21-move optimal solutions
+--------------------------------------
+algorithm              	num. solved    avg. moves    avg. states tested
+------------------------------------------------------------------------
+Greedy (heuristic h1)	     4		109.0		416.5
+Greedy (heuristic h2)	     10		104.0		379.9
+
+A* (heuristic h1)	     0		0		0
+A* (heuristic h2)	     2		21.0		20178.5
+
+puzzles with 24-move optimal solutions
+--------------------------------------
+algorithm              	num. solved    avg. moves    avg. states tested
+------------------------------------------------------------------------
+Greedy (heuristic h1)	     5		118.4		952.2
+Greedy (heuristic h2)	     10		111.0		403.8
+
+A* (heuristic h1)	     0		0		0
+A* (heuristic h2)	     0		0		0
+
+puzzles with 27-move optimal solutions
+--------------------------------------
+algorithm              	num. solved    avg. moves    avg. states tested
+------------------------------------------------------------------------
+Greedy (heuristic h1)	     4		197.5		4285.5  	   
+Greedy (heuristic h2)	     10		115.8		418.8
+
+A* (heuristic h1)	     0		0		0
+A* (heuristic h2)	     0		0		0
+
+	These four tests follow the pattern of the first set of tests, which illustrates that, for the most part, the algorithms solve more puzzles when there are fewer optimal solutions. I maintained the same maximum time for these test, terminating each test after 30 seconds consistently. Due to this consistent maximum, I was unable to solve any of the 24-move and 27-move puzzles using the A* algorithm. So, based on the results from the 18-move and 21-move puzzles, the h2 heuristic allows the A* to solve twice as many puzzles as it would using the h1.
+	Positive results can be seen by the Greedy Search tests. Using the h2 heuristic, Greedy solved all 10 puzzles every time, which, on average, is double the amount solved using h1. It also was able to achieve these results while testing significantly fewer states. 
